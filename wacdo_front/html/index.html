@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Borne de commande Wacdo - Commandez vos menus et produits">
+    <meta name="author" content="Wacdo">
+    <title>Wacdo - Commande en ligne</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <img src="../img/images/logo.png" alt="Wacdo" class="header-logo">
+            <h1 class="logo">Wacdo</h1>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-content" role="main">
+
+        <!-- CATEGORIES -->
+        <nav class="categories-nav" role="navigation" aria-label="Catégories de produits">
+            <button class="cat-btn active" data-category="menus" aria-selected="true">
+                <img src="../img/categories/menus.png" alt="" aria-hidden="true">
+                <span>Menus</span>
+            </button>
+
+            <button class="cat-btn" data-category="burgers">
+                <img src="../img/categories/burgers.png" alt="" aria-hidden="true">
+                <span>Burgers</span>
+            </button>
+
+            <button class="cat-btn" data-category="frites">
+                <img src="../img/categories/frites.png" alt="" aria-hidden="true">
+                <span>Frites</span>
+            </button>
+
+            <button class="cat-btn" data-category="boissons">
+                <img src="../img/categories/boissons.png" alt="" aria-hidden="true">
+                <span>Boissons</span>
+            </button>
+
+            <button class="cat-btn" data-category="salades">
+                <img src="../img/categories/salades.png" alt="" aria-hidden="true">
+                <span>Salades</span>
+            </button>
+
+            <button class="cat-btn" data-category="wraps">
+                <img src="../img/categories/wraps.png" alt="" aria-hidden="true">
+                <span>Wraps</span>
+            </button>
+
+            <button class="cat-btn" data-category="encas">
+                <img src="../img/categories/encas.png" alt="" aria-hidden="true">
+                <span>Encas</span>
+            </button>
+
+            <button class="cat-btn" data-category="desserts">
+                <img src="../img/categories/desserts.png" alt="" aria-hidden="true">
+                <span>Desserts</span>
+            </button>
+
+            <button class="cat-btn" data-category="sauces">
+                <img src="../img/categories/sauces.png" alt="" aria-hidden="true">
+                <span>Sauces</span>
+            </button>
+        </nav>
+
+        <!-- CONTENT -->
+        <div class="content-wrapper">
+
+            <!-- PRODUCTS GRID -->
+            <section class="products-section" role="region" aria-label="Produits disponibles">
+                <div id="products-grid" class="products-grid" role="list"></div>
+            </section>
+
+            <!-- CART -->
+            <aside class="cart-sidebar" role="complementary" aria-label="Panier">
+
+                <div class="cart-logo">
+                    <img src="../img/images/logo.png" alt="Wacdo">
+                </div>
+
+                <div class="cart-info">
+                    <div class="cart-info-row">
+                        <span class="cart-info-label">Commande numéro</span>
+                        <span class="cart-info-number" id="order-display-number">--</span>
+                    </div>
+                    <div class="cart-info-mode" id="order-display-mode">Sur place</div>
+                </div>
+
+                <div class="cart-divider"></div>
+
+                <div class="cart-header">
+                    <h2>Mon Panier</h2>
+                    <button id="clear-cart-btn" class="clear-btn" aria-label="Vider le panier">
+                        <span aria-hidden="true">&#10005;</span>
+                    </button>
+                </div>
+
+                <div id="cart-items" class="cart-items" role="list"></div>
+
+                <div class="cart-divider"></div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Sous-total</span>
+                        <span id="subtotal">0,00 €</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Livraison</span>
+                        <span id="delivery">0,00 €</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">0,00 €</span>
+                    </div>
+                </div>
+
+                <div class="cart-total">
+                    <div class="cart-total-row">
+                        <div class="cart-total-label">
+                            TOTAL<br><small>(ttc)</small>
+                        </div>
+                        <div class="cart-total-price" id="cart-total-display">0,00 €</div>
+                    </div>
+                </div>
+
+                <div class="cart-actions">
+                    <button id="abandon-btn" class="abandon-btn">Abandon</button>
+                    <button id="order-btn" class="order-btn" disabled>Payer</button>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+</div>
+
+<!-- MODAL PRODUIT (inchangée) -->
+<div id="product-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <button class="modal-close" aria-label="Fermer">&times;</button>
+        <div class="modal-body">
+            <h2 id="modal-title">Détails du produit</h2>
+
+            <div class="modal-image-container">
+                <img id="modal-image" src="" alt="">
+            </div>
+
+            <div class="modal-info">
+                <h3 id="modal-product-name"></h3>
+                <p id="modal-product-price" class="price"></p>
+            </div>
+
+            <!-- Options simples (non menus) -->
+            <div id="size-options" class="size-options-container" style="display:none;">
+                <div class="size-radios">
+                    <label><input type="radio" name="product-size" value="regular" checked> Normal</label>
+                    <label><input type="radio" name="product-size" value="large"> Grand (+0,50 €)</label>
+                </div>
+            </div>
+
+            <div class="modal-quantity">
+                <label for="quantity-input">Quantité</label>
+                <div class="quantity-control">
+                    <button id="qty-minus" type="button">&minus;</button>
+                    <input type="number" id="quantity-input" value="1" min="1">
+                    <button id="qty-plus" type="button">+</button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="add-to-cart-btn" class="add-to-cart-btn">
+                    <span>Ajouter au panier</span>
+                    <span id="modal-total-price" class="price">0,00 €</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL COMMANDE (inchangée) -->
+<div id="order-modal" class="modal" aria-hidden="true">
+    <div class="modal-content order-modal-content">
+        <button class="modal-close" aria-label="Fermer">&times;</button>
+        <div class="modal-body">
+            <h2>Votre commande</h2>
+
+            <div id="order-summary" class="order-summary"></div>
+
+            <form id="order-form" class="order-form" novalidate>
+                <div class="form-group order-number-display">
+                    <label>Votre numéro de commande</label>
+                    <input type="text" id="order-number" readonly tabindex="-1">
+                    <small>Conservez ce numéro pour récupérer votre commande</small>
+                </div>
+
+                <div class="total-section">
+                    <div class="summary-row">
+                        <span>Total</span>
+                        <span id="order-total">0,00 €</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-order-btn">Confirmer la commande</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 NOUVELLE MODAL MULTI-ÉTAPES -->
+<div id="menu-flow-modal" class="modal-step" aria-hidden="true">
+    <div class="modal-step-content">
+
+        <header class="modal-step-header">
+            <button class="modal-step-back" aria-label="Retour">←</button>
+            <button class="modal-step-close" aria-label="Fermer">×</button>
+        </header>
+
+        <div class="modal-step-body">
+            <!-- contenu dynamique généré par JS -->
+        </div>
+
+        <button class="modal-step-button"></button>
+    </div>
+</div>
+
+<script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+/* Wacdo - Écran numéro de chevalet */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fond */
+body {
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #264029;
+  background-image: url("../img/images/mc_landing_banner.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Wrapper */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 24px;
+}
+
+/* Boîte blanche */
+.white-box {
+  background: #FFFFFF;
+  width: 70%;
+  max-width: 900px;
+  padding: 60px 48px;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Logo */
+.logo {
+  height: 44px;
+  margin-bottom: 32px;
+}
+
+/* Titre */
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+/* Sous-texte */
+.subtitle {
+  font-size: 1.3rem;
+  color: #444;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+/* Champ de saisie */
+.input-container {
+  margin-bottom: 40px;
+}
+
+#chevalet-number {
+  width: 60%;
+  max-width: 300px;
+  height: 70px;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  border: 3px solid #E0E0E0;
+  border-radius: 20px;
+  background: #F7F7F7;
+  transition: 0.2s;
+}
+
+#chevalet-number:focus {
+  border-color: #FFC72C;
+  background: #FFF8E1;
+  outline: none;
+}
+
+/* Bouton valider */
+.submit-btn {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 16px;
+  background: #27AE60;
+  color: #FFF;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:disabled {
+  background: #CCCCCC;
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #219150;
+}

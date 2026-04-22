@@ -1,0 +1,162 @@
+/* Wacdo - Page de sélection du mode
+   Fond vert + bannière, boîte blanche centrée */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corps de la page */
+body {
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  /* Fond vert foncé de secours si l'image ne charge pas */
+  background-color: #264029;
+  background-image: url("../img/images/mc_landing_banner.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Conteneur centré */
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 24px;
+}
+
+/* Boîte blanche principale */
+.white-box {
+  background: #FFFFFF;
+  width: 70%;
+  max-width: 900px;
+  padding: 60px 48px;
+  border-radius: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+/* Logo Wacdo */
+.landing-logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  margin-bottom: 28px;
+}
+
+/* Titre "Bonjour," */
+.bonjour {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 16px;
+}
+
+/* Question principale */
+.question {
+  font-size: 2.2rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #222222;
+  margin-bottom: 56px;
+}
+
+/* Conteneur des choix */
+.choices {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+/* Boutons de choix (Sur place / À emporter) */
+.choice-btn {
+  width: 240px;
+  height: 240px;
+  border-radius: 24px;
+  border: 4px solid transparent;
+  background: #F7F7F7;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.choice-btn img {
+  width: 110px;
+  height: auto;
+}
+
+/* Survol - bordure jaune */
+.choice-btn:hover {
+  border-color: #FFC72C;
+  background: #FFF8E1;
+  transform: scale(1.03);
+}
+
+/* Clic - jaune plus marqué */
+.choice-btn:active {
+  border-color: #FFC72C;
+  background: #FFEF9E;
+  transform: scale(1.0);
+}
+
+/* Focus clavier */
+.choice-btn:focus-visible {
+  outline: 3px solid #FFC72C;
+  outline-offset: 4px;
+}
+
+/* Responsive - tablette / mobile */
+@media (max-width: 768px) {
+  .white-box {
+    width: 92%;
+    padding: 40px 24px;
+  }
+
+  .bonjour {
+    font-size: 1.6rem;
+  }
+
+  .question {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+  }
+
+  .choices {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .choice-btn {
+    width: 100%;
+    max-width: 320px;
+    height: 200px;
+    font-size: 1.3rem;
+  }
+
+  .choice-btn img {
+    width: 90px;
+  }
+}
+
+/* Centrage horizontal des choix */
+.choices.centered {
+  justify-content: center;
+}
+

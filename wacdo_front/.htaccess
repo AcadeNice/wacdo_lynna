@@ -1,0 +1,52 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /wacdo_front/
+    
+    # Rediriger les requêtes vers index.html si le fichier/dossier n'existe pas
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ^ html/index.html [L]  # Optionnel
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Permettre les requêtes CORS pour les fichiers JSON
+    <FilesMatch "\.json$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type"
+    </FilesMatch>
+    
+    # Cache des images
+    <FilesMatch "\.(jpg|jpeg|png|gif|ico|svg)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+    
+    # Cache des fichiers CSS et JS
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+    
+    # Headers de sécurité
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+<IfModule mod_gzip.c>
+    mod_gzip_on Yes
+    mod_gzip_dechunk Yes
+    mod_gzip_item_include file \.(html?|css|js|xml|json)$
+    mod_gzip_item_include handler ^cgi-script$
+    mod_gzip_item_exclude mime ^image/
+    mod_gzip_minimum_file_size 500
+</IfModule>
+
+# Types MIME
+<IfModule mod_mime.c>
+    AddType application/json .json
+    AddType image/svg+xml .svg
+</IfModule>
+
+# Désactiver l'index directory
+Options -Indexes
